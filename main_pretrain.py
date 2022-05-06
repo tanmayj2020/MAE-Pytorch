@@ -83,12 +83,10 @@ def get_args_parser():
 
 def main(args):
     device = torch.device(args.device)
-    # fix the seed for reproducibility
     seed = args.seed
     torch.manual_seed(seed)
     np.random.seed(seed)
     cudnn.benchmark = True
-    # simple augmentation
     transform_train = transforms.Compose([
             transforms.RandomResizedCrop(args.input_size, scale=(0.2, 1.0), interpolation=3),  # 3 is bicubic
             transforms.RandomHorizontalFlip(),
